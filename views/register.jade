@@ -1,0 +1,29 @@
+extends layout1
+
+block content
+  h1.title
+    | Register an Account
+  .box
+    label.label First Name
+    p.control
+      input.input(type='text', placeholder='John')
+    label.label Last Name
+    p.control
+      input.input(type='text', placeholder='Smith')
+    label.label Student Number
+    p.control
+      input.input(type='text', placeholder='2012-01234-MN-0')
+    label.label Email
+    p.control
+      input.input(type='email', placeholder='j.co@gmail.com')
+    label.label Password
+    p.control
+      input.input(type='password', placeholder='●●●●●●●')
+    label.label Confirm Password
+    p.control
+      input.input(type='password', placeholder='●●●●●●●')
+    hr
+    p.control
+      button.button.is-primary Register
+      button.button.is-default
+        a(href='/login') Cancel
