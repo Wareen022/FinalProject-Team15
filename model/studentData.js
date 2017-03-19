@@ -33,4 +33,4 @@ var studentSchema = new Schema({
 
 studentSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('studentModel', studentSchema);
+module.exports = mongoose.model('studentData', studentSchema);

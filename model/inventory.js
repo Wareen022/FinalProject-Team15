@@ -1,4 +1,7 @@
 var mongoose = require('mongoose');
+Schema = mongoose.Schema,
+    passportLocalMongoose = require('passport-local-mongoose');
+
 var Schema = mongoose.Schema;
 
 var inventorySchema = new Schema({
@@ -9,7 +12,7 @@ object_name: {
 },
   number_of_items_available: Number, 
   Room: Number,
-  material_name: String
+  material_name: String,
   createdate: Date,
   updatedate: String,
   notes: [{

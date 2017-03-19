@@ -1,5 +1,5 @@
 var passport = require('passport');
-var studentData = require('../model/studentData');
+var studentInfo = require('../model/studentData');
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
@@ -9,13 +9,13 @@ router.route('/register')
     res.render('register', {});
   })
   .post(function(req, res, next) {
-    studentData.register(new User({username: req.body.username}), req.body.password, function(err, account) {
+    studentInfo.register(new User({username: req.body.username}), req.body.password, function(err, account) {
       if(err) {
         return res.render('register', {account: account});
       }
 
       req.login(account, function(err) {
-        res.redirect('/contacts');
+        res.redirect('/auth/login');
       });
     })
   })
@@ -23,17 +23,19 @@ router.route('/register')
 router.get('/login', function(req, res, next) {
   res.render('login', {user: req.user});
 });
-
+router.get('/login-', function(req, res, next) {
+  res.render('login-', {user: req.user});
+});
 
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/contacts');
-  });
+    res.redirect('/auth/login');
+          });
 
 router.all('/logout', function(req, res, next) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 

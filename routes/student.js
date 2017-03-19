@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var studentModel = require('../model/student');
+var studentModel = require('../model/studentData');
 
 
 router.use(function(req, res, next) {

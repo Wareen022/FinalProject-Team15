@@ -4,11 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -19,7 +19,9 @@ var tables = require('./routes/tables');
 var forms = require('./routes/forms');
 var auth = require('./routes/auth');
 
-var MongoURI = "mongodb://WAbernabe:brnb123@ds161038.mlab.com:61038/coen3463-t15"
+mongoose.connect('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
+
+
 
 var app = express();
 
@@ -46,26 +48,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var inventory = require('./model/inventory');
-var studentData = require('./model/studentData')
+var studentData = require('./model/studentData');
 
-passport.use(inventory.createStrategy());
+//passport.use(inventory.createStrategy());
 
-passport.serializeUser(inventory.serializeUser());
-passport.deserializeUser(inventory.deserializeUser());
-passport.serializeUser(inventory.serializeUser());
-passport.deserializeUser(inventory.deserializeUser());
-
-mongoose.connect(MongoURI, function(err, res) {
-    if (err) {
-        console.log('Error connecting to ' + MongoURI);
-    } else {
-        console.log('MongoDB connected!');
-    }
-});
-
-restify.serve(router, Student);
-app.use(router);
-
+passport.serializeUser(studentData.serializeUser());
+passport.deserializeUser(studentData.deserializeUser());
+passport.serializeUser(studentData.serializeUser());
+passport.deserializeUser(studentData.deserializeUser());
 
 app.use('/', index);
 app.use('/users', users);
