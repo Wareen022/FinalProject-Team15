@@ -3,15 +3,15 @@ extends layout1
 block content
   h1.title
     a Hello, there!
-  .box
+  .box(action='login', method='post')
     label.label Email
     p.control
-      input.input(type='text', placeholder='jsmith@example.org')
+      input.input(name='email', type='text', placeholder='jsmith@example.org')
     label.label Password
     p.control
-      input.input(type='password', placeholder='●●●●●●●')
+      input.input(name='password', type='password', placeholder='●●●●●●●')
     hr
     p.control
       button.button.is-primary Log in
       button.button.is-default
-        a(href='/register') Register
+        a(href='/auth/register') Register
