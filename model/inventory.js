@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var passportLocalMongoose = require('passport-local-mongoose');
 
 var inventorySchema = new Schema({
 
@@ -25,5 +24,6 @@ materialName: {
     note: String
   }]
 });
+
 
 module.exports = mongoose.model('inventory', inventorySchema);

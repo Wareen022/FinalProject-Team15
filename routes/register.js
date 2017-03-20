@@ -18,9 +18,7 @@ router.post('/', function(req, res) {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     studentNumber: req.body.studentNumber,
-    section: req.body.section,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
+    section: req.body.section
   };
 
   studentInfo.register(new studentInfo(user), req.body.confirmPassword, function(err) {

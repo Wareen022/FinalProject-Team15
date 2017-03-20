@@ -5,7 +5,7 @@ var studentInfo = require('../model/studentData');
 
 router.use(function(req, res, next) {
   if (!req.user) {
-    res.redirect('/auth/login')
+    res.redirect('/login')
   }
   next();
 });

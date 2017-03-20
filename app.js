@@ -8,6 +8,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 
 
 var index = require('./routes/index');
@@ -17,7 +18,6 @@ var register = require('./routes/register');
 var student = require('./routes/student');
 var tables = require('./routes/tables');
 var forms = require('./routes/forms');
-var auth = require('./routes/auth');
 
 mongoose.connect('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
 
@@ -55,14 +55,15 @@ passport.deserializeUser(studentData.deserializeUser());
 passport.serializeUser(studentData.serializeUser());
 passport.deserializeUser(studentData.deserializeUser());
 
-app.use('/', login);
+app.use(flash());
+
+app.use('/');
 app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/student', student);
 app.use('/tables', tables);
 app.use('/forms', forms);
-app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
