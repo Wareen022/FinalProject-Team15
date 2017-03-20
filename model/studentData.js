@@ -3,15 +3,19 @@ var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var studentSchema = new Schema({
-  // id is created automatically
-  student_number: {
+
+  studentNumber: {
     type: String,
     required: [true, 'Fill up Student Number']
     
   },
-  last_name: {
+  lastName: {
     type: String,
     required: [true, 'Fill up Last Name']
+  },
+    firstName: {
+    type: String,
+    required: [true, 'Fill up First Name']
   },
   student_number: String,
   firstName: String,

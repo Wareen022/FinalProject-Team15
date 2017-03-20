@@ -1,20 +1,22 @@
 var mongoose = require('mongoose');
-Schema = mongoose.Schema,
-    passportLocalMongoose = require('passport-local-mongoose');
-
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var inventorySchema = new Schema({
 
-object_name: {
+materialName: {
     type: String,
     required: [true, 'Fill up Name']
 },
-  number_of_items_available: Number, 
-  Room: Number,
-  material_name: String,
-  createdate: Date,
-  updatedate: String,
+materialName: {
+    type: String,
+    required: [true, 'Fill up Name']
+},
+  numberOfItemsAvailable: Number, 
+  room: Number,
+  materialNname: String,
+  createDate: Date,
+  updateDate: String,
   notes: [{
     postedDate: {
       type: Date,

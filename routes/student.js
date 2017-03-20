@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var studentModel = require('../model/studentData');
+var studentInfo = require('../model/studentData');
 
 
 router.use(function(req, res, next) {
@@ -12,7 +12,7 @@ router.use(function(req, res, next) {
 
 router.get('/', function(req, res) {
   studentData.find( function(err, student, count) {
-    res.render('studentModel', {studentModel: studentModel});
+    res.render('studentData', {students: studentModel});
   })
 });
 

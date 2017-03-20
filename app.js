@@ -21,8 +21,6 @@ var auth = require('./routes/auth');
 
 mongoose.connect('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
 
-
-
 var app = express();
 
 // view engine setup
@@ -57,7 +55,7 @@ passport.deserializeUser(studentData.deserializeUser());
 passport.serializeUser(studentData.serializeUser());
 passport.deserializeUser(studentData.deserializeUser());
 
-app.use('/', index);
+app.use('/', login);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
