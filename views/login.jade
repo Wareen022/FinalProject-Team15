@@ -4,9 +4,9 @@ block content
   h1.title
     a Hello, there!
   .box(action='/login', method='post')
-    label.label Email
+    label.label Username
     p.control
-      input.input(name='email', type='text', placeholder='jsmith@example.org')
+      input.input(name='username', type='text')
     label.label Password
     p.control
       input.input(name='password', type='password', placeholder='●●●●●●●')
@@ -14,4 +14,4 @@ block content
     p.control
       button.button.is-primary Log in
       button.button.is-default
-        a(href='/auth/register') Register
+        a(href='/register') Register

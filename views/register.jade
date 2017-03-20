@@ -5,6 +5,9 @@ block content
     | Register an Account
   .box
     form(action='/register', method='post')
+      label.label Username
+      p.control
+        input.input(name='username', type='text', placeholder='John')
       label.label First Name
       p.control
         input.input(name='firstName', type='text', placeholder='John')
@@ -27,4 +30,4 @@ block content
       p.control
         button.button.is-primary Register
         button.button.is-default
-          a(href='/auth/login') Cancel
+          a(href='/login') Cancel

@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 var studentInfo = require('../model/studentData');
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
   res.render('register');
 });
 
@@ -13,8 +14,9 @@ router.get('/', function(req, res) {
 //  })
 //});
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
   var user = {
+    username: req.body.username,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     studentNumber: req.body.studentNumber,

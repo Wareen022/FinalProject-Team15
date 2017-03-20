@@ -10,16 +10,25 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
 
+const router = express.Router();
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 var login = require('./routes/login');
 var register = require('./routes/register');
-var student = require('./routes/student');
 var tables = require('./routes/tables');
 var forms = require('./routes/forms');
 
-mongoose.connect('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
+var inventory = require('./model/inventory');
+var studentData = require('./model/studentData');
+
+passport.use(new LocalStrategy(studentData.authenticate()));
+passport.serializeUser(studentData.serializeUser());
+passport.deserializeUser(studentData.deserializeUser());
+
+
+var MongoURI=('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
+mongoose.connect(MongoURI);
 
 var app = express();
 
@@ -39,29 +48,20 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: false,
-    cookie: {}
+    cookie: {
+            "maxAge": 86400000,
+    }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-var inventory = require('./model/inventory');
-var studentData = require('./model/studentData');
-
-//passport.use(inventory.createStrategy());
-
-passport.serializeUser(studentData.serializeUser());
-passport.deserializeUser(studentData.deserializeUser());
-passport.serializeUser(studentData.serializeUser());
-passport.deserializeUser(studentData.deserializeUser());
-
 app.use(flash());
 
-app.use('/');
+app.use('/', login);
 app.use('/users', users);
-app.use('/login', login);
+app.use('/index', index);
 app.use('/register', register);
-app.use('/student', student);
 app.use('/tables', tables);
 app.use('/forms', forms);
 
