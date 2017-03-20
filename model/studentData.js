@@ -17,14 +17,12 @@ var studentSchema = new Schema({
     type: String,
     required: [true, 'Fill up First Name']
   },
-  student_number: String,
   firstName: String,
   lastName: String,
-  email: String,
   studentNumber: String,
   section: String,
   password: String,
-  passwordCon: String,
+  passwordConfirm: String,
   createdate: Date,
   updatedate: String,
   notes: [{
