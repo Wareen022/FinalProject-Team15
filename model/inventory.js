@@ -7,9 +7,9 @@ materialName: {
     type: String,
     required: [true, 'Fill up Name']
 },
-materialName: {
-    type: String,
-    required: [true, 'Fill up Name']
+controlNumber: {
+    type: Number,
+    required: [true, 'Fill up Control Number']
 },
   numberOfItemsAvailable: Number, 
   room: Number,
