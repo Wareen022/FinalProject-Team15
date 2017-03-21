@@ -7,6 +7,7 @@ var Student= new Schema({
   lastName: String,
   studentNumber: String,
   section: String
+  
   // password: String,
   // passwordConfirm: String,
   // createdate: Date,

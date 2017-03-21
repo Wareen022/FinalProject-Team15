@@ -13,12 +13,12 @@ router.post('/login', function(req, res, next) {
         if(!err){
             if(!user){
                 req.flash('alertMessage', 'Invalid username or password!');
-                res.redirect('/login');
+                res.redirect('/');
             }
             else{
                 req.login(user, function(err) {
                     if(!err){
-                        res.redirect('/');
+                        res.redirect('/index');
                     }
                     else{
                         res.end(err);
@@ -34,7 +34,7 @@ router.post('/login', function(req, res, next) {
 
 router.post('/logout', function(req, res){
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
 });
 
 module.exports = router;

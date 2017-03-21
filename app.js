@@ -58,9 +58,9 @@ app.use(passport.session());
 
 app.use(flash());
 
-app.use('/', index);
+app.use('/', login);
 app.use('/users', users);
-app.use('/login', login);
+app.use('/index', index);
 app.use('/register', register);
 app.use('/tables', tables);
 app.use('/forms', forms);
