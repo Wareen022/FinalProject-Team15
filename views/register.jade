@@ -4,7 +4,7 @@ block content
   h1.title
     | Register an Account
   .box
-    form(action='/register', method='post')
+    form(action='/auth/register', method='post')
       label.label Username
       p.control
         input.input(name='username', type='text', placeholder='John')

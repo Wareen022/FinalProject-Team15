@@ -32,7 +32,7 @@ html(lang='en')
           a.navbar-brand(href='/index') Laboratory Inventory
           ul.nav.navbar-top-links.navbar-right
             li.dropdown
-              a.dropdown-toggle(data-toggle='dropdown', href='#')
+              a.dropdown-toggle(data-toggle='dropdown', href="/auth/logout")
                 i.fa.fa-user.fa-fw
                 i.fa.fa-caret-down 
                    
@@ -46,17 +46,18 @@ html(lang='en')
                     button.btn.btn-default(type='button')
                       i.fa.fa-search
               li
-                a.active(href='/index')
+                a.active(href='/admin/dashboard')
                   i.fa.fa-dashboard.fa-fw
                   |  Dashboard
               li
-                a(href='/tables')
+                a(href='/inventory')
                   i.fa.fa-table.fa-fw
-                  |  Inventory
+                  |  Inventory 
               li
-                a(href='/forms')
+                a(href='/admin/add')
                   i.fa.fa-edit.fa-fw
-                  |  Forms
+                  |  Add Inventory
+             
       #page-wrapper
         .row
           .col-lg-12

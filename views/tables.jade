@@ -13,11 +13,18 @@ block content
               th#item           Number of Items available 
               th#room           Room 
               th#materialName   Material Name 
-              th#controlNumber  Control Number 
+              th#controlNumber  Control Number
+              if (user.auth === 'admin')  
+                th Actions
           tbody
-            tr
-              td
-              td 
-              td 
-              td 
-              td 
+            for item in tables
+              tr
+                td
+                  img(src="#{item.image}", alt='Image', height="42", width="42")
+                td #{item.numberOfItemsAvailable}
+                td #{item.room}
+                td #{item.materialName}
+                td #{item.controlNumber}
+                if (user.auth === 'admin')  
+                  td 
+                    a(href="/admin/delete/#{item._id}") Delete

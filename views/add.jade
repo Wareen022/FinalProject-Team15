@@ -1,0 +1,27 @@
+extends layout1
+
+block content
+  h1.title
+    | Add an inventory
+  .box
+    form(action='/admin/add', method='post')
+      label.label Material Name
+      p.control
+        input.input(name='materialName', type='text' )
+      label.label Control Number
+      p.control
+        input.input(name='controlNumber', type='text')
+      label.label Number of items available
+      p.control
+        input.input(name='numberOfItemsAvailable', type='text' )
+      label.label Room
+      p.control
+        input.input(name='room', type='text')
+      label.label Image
+      p.control
+        input.input(name='image', type='text')
+      hr
+      p.control
+        button.button.is-primary Add
+        button.button.is-default
+          a(href='/') Cancel

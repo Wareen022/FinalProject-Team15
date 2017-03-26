@@ -1,0 +1,32 @@
+extends layout2
+
+block content 
+  .panel.panel-default
+    .panel-heading
+      | List of data of inventories   
+    .panel-body
+      .table-responsive
+        table#dataTables-example.table.table-striped.table-bordered.table-hover
+          thead
+            tr
+              th First Name 
+              th Last Name
+              th Student Number 
+              th Section  
+              th Authentication
+              th Actions
+          tbody
+            for user in users
+              tr
+                td #{user.firstName}
+                td #{user.lastName}
+                td #{user.studentNumber}
+                td #{user.section}
+                td #{user.auth}
+                td
+                  if (user.auth === 'admin') 
+                    form(method="post", action="/admin/regular/#{user._id}")
+                      button Make regular
+                  else
+                    form(method="post", action="/admin/promote/#{user._id}")
+                      button Make admin

@@ -4,31 +4,25 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var flash = require('connect-flash');
 
+const methodOverride = require('method-override');
+const restify = require('express-restify-mongoose');
 const router = express.Router();
 
+
 var index = require('./routes/index');
-var users = require('./routes/users');
-var login = require('./routes/login');
-var register = require('./routes/register');
-var tables = require('./routes/tables');
-var forms = require('./routes/forms');
+var auth = require('./routes/auth');
+var inventory = require('./routes/inventory');
+var admin = require('./routes/admin');
 
-var inventory = require('./model/inventory');
-var studentData = require('./model/studentData');
+var MongoURI=('mongodb://admin:password@ds141410.mlab.com:41410/projectinventory');
+// mongoose.connect(MongoURI);
 
-passport.use(new LocalStrategy(studentData.authenticate()));
-passport.serializeUser(studentData.serializeUser());
-passport.deserializeUser(studentData.deserializeUser());
-
-
-var MongoURI=('mongodb://warren:brnb123@ds163699.mlab.com:63699/finalproject-inventory');
-mongoose.connect(MongoURI);
 
 var app = express();
 
@@ -42,28 +36,45 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: false,
     cookie: {
-            "maxAge": 86400000,
+      "maxAge": 86400000,
     }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(flash());
+var Student = require('./models/studentData');
+var Inventory = require('./models/inventory');
 
-app.use('/', login);
-app.use('/users', users);
-app.use('/index', index);
-app.use('/register', register);
-app.use('/tables', tables);
-app.use('/forms', forms);
+
+passport.use(Student.createStrategy());
+
+passport.serializeUser(Student.serializeUser());
+passport.deserializeUser(Student.deserializeUser());
+
+
+mongoose.connect(MongoURI, function(err, res) {
+    if (err) {
+        console.log('Error connecting to ' + MongoURI);
+    } else {
+        console.log('MongoDB connected!');
+    }
+});
+
+restify.serve(router, Inventory);
+app.use(router);
+
+app.use('/', index);
+app.use('/auth', auth);
+app.use('/inventory',inventory);
+app.use('/admin',admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

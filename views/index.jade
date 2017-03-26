@@ -1,24 +1,19 @@
-extends layout2
+extends layout1
 
 block content
-	.panel.panel-default 
-		.panel-heading
-			i.fa
-			|  Borrower's Information
-		.panel-body
-			.table-responsive
-		table#dataTables-example.table.table-striped.table-bordered.table-hover
-			thead
-				tr
-					th#date          			Date 
-					th#studentNumber          	Student Number
-					th#lastName   				Last Name 
-					th#firstName           		First Name
-					th#userName  				Username 
-			tbody
-				tr
-				td
-				td 
-				td 
-				td 
-				td 
+
+ h1.title
+    | Computer Engineering
+              
+  if (user)
+    p You are logged in as #{user.username}
+    br
+    a(href="/inventory") Go to inventory
+    br
+    a(href="/auth/logout") Logout
+  else
+    a(href='/auth/login')
+      | Login
+    strong    |   
+    a(href='/auth/register')
+      | Register
