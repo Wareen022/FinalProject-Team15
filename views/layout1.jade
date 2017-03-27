@@ -8,11 +8,16 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/bulma.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/base.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/hero.css')
   body
-    section.hero.is-fullheight.is-dark.is-bold
+    section.hero.is-primary.is-large.header-image
       .hero-body
         .container
           .columns.is-vcentered
-            .column.is-4.is-offset-8
+           .nav-right
+            .column.is-8.is-offset-3
+             
+           .nav-left
+            .column.is-8.is-offset-3
 
               block content

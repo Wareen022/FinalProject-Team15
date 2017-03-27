@@ -2679,7 +2679,6 @@ a.box:active {
 .title,
 .subtitle {
   word-break: break-word;
-  font-size: ;
 }
 
 .title:not(:last-child),
@@ -4948,7 +4947,7 @@ label.panel-block:hover {
 .columns {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
-  margin-top: -1rem;
+  margin-top: -0.75rem;
 }
 
 .columns:last-child {
@@ -5173,7 +5172,7 @@ label.panel-block:hover {
 .hero-body {
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 2rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 @media screen and (min-width: 1192px) {
@@ -5470,9 +5469,6 @@ label.panel-block:hover {
   }
 }
 
-.hero.is-body{
-  background-image: "layout.jpg";
-}
 .hero.is-dark {
   background-color: #363636;
   color: whitesmoke;
@@ -6016,7 +6012,7 @@ label.panel-block:hover {
 @media screen and (min-width: 769px) {
   .hero.is-medium .hero-body {
     padding-bottom: 9rem;
-    padding-top: 7rem;
+    padding-top: 9rem;
   }
 }
 

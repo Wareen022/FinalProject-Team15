@@ -12,7 +12,6 @@ controlNumber: {
     required: [true, 'Fill up Control Number']
 },
   numberOfItemsAvailable: Number, 
-  room: Number,
   createDate: Date,
   updateDate: String,
   image: String,

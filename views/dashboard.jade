@@ -1,32 +1,76 @@
 extends layout2
 
 block content 
-  .panel.panel-default
-    .panel-heading
-      | List of data of inventories   
-    .panel-body
-      .table-responsive
-        table#dataTables-example.table.table-striped.table-bordered.table-hover
-          thead
-            tr
-              th First Name 
-              th Last Name
-              th Student Number 
-              th Section  
-              th Authentication
-              th Actions
-          tbody
-            for user in users
-              tr
-                td #{user.firstName}
-                td #{user.lastName}
-                td #{user.studentNumber}
-                td #{user.section}
-                td #{user.auth}
-                td
-                  if (user.auth === 'admin') 
-                    form(method="post", action="/admin/regular/#{user._id}")
-                      button Make regular
-                  else
-                    form(method="post", action="/admin/promote/#{user._id}")
-                      button Make admin
+  #wrapper
+          // Navigation
+          nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='/index') Laboratory Inventory
+              ul.nav.navbar-top-links.navbar-right
+                li.dropdown
+                  a.dropdown-toggle(data-toggle='dropdown', href="/auth/logout")
+                    i.fa.fa-user.fa-fw
+                    i.fa.fa-caret-down 
+                       
+            .navbar-default.sidebar(role='navigation')
+              .sidebar-nav.navbar-collapse
+                ul#side-menu.nav
+                  li.sidebar-search
+                    .input-group.custom-search-form
+                      input.form-control(type='text', placeholder='Search...')
+                      span.input-group-btn
+                        button.btn.btn-default(type='button')
+                          i.fa.fa-search
+                  li
+                    a.active(href='/admin/dashboard')
+                      i.fa.fa-dashboard.fa-fw
+                      |  Dashboard
+                  li
+                    a(href='/inventory')
+                      i.fa.fa-table.fa-fw
+                      |  Inventory 
+                  li
+                    a(href='/admin/add')
+                      i.fa.fa-edit.fa-fw
+                      |  Add Inventory
+                 
+      #page-wrapper
+        .row
+          .col-lg-12
+            h1.page-header Computer Engineering
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | List of data of inventories   
+              .panel-body
+                .table-responsive
+                  table#dataTables-example.table.table-striped.table-bordered.table-hover
+                    thead
+                      tr
+                        th First Name 
+                        th Last Name
+                        th Student Number 
+                        th Section  
+                        th Authentication
+                        th Actions
+                    tbody
+                      for user in users
+                        tr
+                          td #{user.firstName}
+                          td #{user.lastName}
+                          td #{user.studentNumber}
+                          td #{user.section}
+                          td #{user.auth}
+                          td
+                            if (user.auth === 'admin') 
+                              form(method="post", action="/admin/regular/#{user._id}")
+                                button Make regular
+                            else
+                              form(method="post", action="/admin/promote/#{user._id}")
+                                button Make admin

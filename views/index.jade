@@ -1,19 +1,19 @@
 extends layout1
 
 block content
+    h1.title.is-2 
+      | Computer Engineering
 
- h1.title
-    | Computer Engineering
-              
-  if (user)
-    p You are logged in as #{user.username}
-    br
-    a(href="/inventory") Go to inventory
-    br
-    a(href="/auth/logout") Logout
-  else
-    a(href='/auth/login')
-      | Login
-    strong    |   
-    a(href='/auth/register')
-      | Register
+                
+    if (user)
+      p You are logged in as #{user.username}
+      br
+      a(href="/inventory") Go to inventory
+      br
+      a(href="/auth/logout") Logout
+    else
+      a(href='/auth/login')
+        | Login
+      strong    |   
+      a(href='/auth/register')
+        | Register

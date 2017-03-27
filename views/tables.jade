@@ -1,30 +1,77 @@
 extends layout2
 
 block content 
-  .panel.panel-default
-    .panel-heading
-      | List of data of inventories   
-    .panel-body
-      .table-responsive
-        table#dataTables-example.table.table-striped.table-bordered.table-hover
-          thead
-            tr
-              th#image          Image 
-              th#item           Number of Items available 
-              th#room           Room 
-              th#materialName   Material Name 
-              th#controlNumber  Control Number
-              if (user.auth === 'admin')  
-                th Actions
-          tbody
-            for item in tables
-              tr
-                td
-                  img(src="#{item.image}", alt='Image', height="42", width="42")
-                td #{item.numberOfItemsAvailable}
-                td #{item.room}
-                td #{item.materialName}
-                td #{item.controlNumber}
-                if (user.auth === 'admin')  
-                  td 
-                    a(href="/admin/delete/#{item._id}") Delete
+  #wrapper
+          // Navigation
+          nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='/index') Laboratory Inventory
+              ul.nav.navbar-top-links.navbar-right
+                li.dropdown
+                  a.dropdown-toggle(data-toggle='dropdown', href="/auth/logout")
+                    i.fa.fa-user.fa-fw
+                    i.fa.fa-caret-down 
+                       
+            .navbar-default.sidebar(role='navigation')
+              .sidebar-nav.navbar-collapse
+                ul#side-menu.nav
+                  li.sidebar-search
+                    .input-group.custom-search-form
+                      input.form-control(type='text', placeholder='Search...')
+                      span.input-group-btn
+                        button.btn.btn-default(type='button')
+                          i.fa.fa-search
+                  if (user.auth ==='admin')
+                    li
+                      a.active(href='/admin/dashboard')
+                        i.fa.fa-dashboard.fa-fw
+                        |  Dashboard
+                    li
+                      a(href='/admin/add')
+                        i.fa.fa-edit.fa-fw
+                        |  Add Inventory
+                  li
+                    a(href='/inventory')
+                      i.fa.fa-table.fa-fw
+                      |  Inventory 
+                  li
+                    a(href='/auth/logout')
+                      i.fa.fa-table.fa-fw
+                      |  Logout 
+             
+      #page-wrapper
+        .row
+          .col-lg-12
+            h1.page-header Computer Engineering
+        .row
+          .col-lg-12
+            .panel.panel-default
+              .panel-heading
+                | List of data of inventories   
+              .panel-body
+                .table-responsive
+                  table#dataTables-example.table.table-striped.table-bordered.table-hover
+                    thead
+                      tr
+                        th#image          Image 
+                        th#item           Number of Items available 
+                        th#materialName   Material Name 
+                        th#controlNumber  Control Number
+                        if (user.auth === 'admin')  
+                          th Actions
+                    tbody
+                      for item in tables
+                        tr
+                          td
+                            img(src="./images/inventory/#{item.image}", alt='Image', height="70", width="100")
+                          td #{item.numberOfItemsAvailable}
+                          td #{item.materialName}
+                          td #{item.controlNumber}
+                          if (user.auth === 'admin')  
+                            td 
+                              a(href="/admin/delete/#{item._id}") Delete
